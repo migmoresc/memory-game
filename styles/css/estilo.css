@@ -23,18 +23,21 @@ h1 {
 }
 
 .config {
-  display: none;
+  /* display: none; */
   height: 70%;
   width: 50%;
   position: absolute;
-  background-color: cadetblue;
+  /* left: calc(-50% + 48px); */
+  /* background-color: cadetblue; */
   top: 10%;
   z-index: 2;
 }
 
 .opciones {
   height: 100%;
-  width: calc(100% - 48px);
+  /* width: calc(100% - 48px); */
+  width: 0;
+  overflow: hidden;
   background-color: coral;
   float: left;
 }
