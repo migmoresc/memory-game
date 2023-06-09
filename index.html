@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Juego de memoria</title>
+    <link rel="stylesheet" href="styles/css/reset.css" />
+    <link rel="stylesheet" href="styles/css/estilo.css" />
+    <script src="scritps/jquery-3.7.0.min.js"></script>
+    <script src="scritps/script.js"></script>
+  </head>
+
+  <body>
+    <main>
+      <h1>Bienvenid@ al juego de memoria</h1>
+      <div class="config">
+        <div class="opciones">
+          <p>Temas</p>
+          <div class="tematica">
+            <div class="block">
+              <input
+                type="radio"
+                name="tematica"
+                id="animales"
+                value="animales"
+              />
+              <label for="animales">Animales</label>
+            </div>
+            <div class="block">
+              <input
+                type="radio"
+                name="tematica"
+                id="plantas"
+                value="plantas"
+              />
+              <label for="plantas">Plantas</label>
+            </div>
+            <div class="block">
+              <input
+                type="radio"
+                name="tematica"
+                id="vehiculos"
+                value="vehiculos"
+              />
+              <label for="vehiculos">Vehículos</label>
+            </div>
+          </div>
+          <p>Dificultad</p>
+          <div class="dificultad">
+            <input type="radio" name="dificultad" id="facil" value="facil" />
+            <label for="facil">Fácil</label>
+            <input type="radio" name="dificultad" id="normal" value="normal" />
+            <label for="normal">Normal</label>
+          </div>
+          <div>
+            <button id="iniciar">Iniciar</button>
+          </div>
+        </div>
+        <div class="rueda">
+          <img src="assets/img/config.png" class="img-rueda" alt="" />
+        </div>
+      </div>
+      <div class="tablero">
+        <div class="carta">
+          <img src="" alt="" class="img-carta" id="c-1" />
+        </div>
+        <div class="carta">
+          <img src="" alt="" class="img-carta" id="c-2" />
+        </div>
+        <div class="carta">
+          <img src="" alt="" class="img-carta" id="c-3" />
+        </div>
+        <div class="carta">
+          <img src="" alt="" class="img-carta" id="c-4" />
+        </div>
+        <div class="carta">
+          <img src="" alt="" class="img-carta" id="c-5" />
+        </div>
+        <div class="carta">
+          <img src="" alt="" class="img-carta" id="c-6" />
+        </div>
+        <div class="carta">
+          <img src="" alt="" class="img-carta" id="c-7" />
+        </div>
+        <div class="carta">
+          <img src="" alt="" class="img-carta" id="c-8" />
+        </div>
+        <div class="carta">
+          <img src="" alt="" class="img-carta" id="c-9" />
+        </div>
+        <div class="carta">
+          <img src="" alt="" class="img-carta" id="c-10" />
+        </div>
+        <div class="carta">
+          <img src="" alt="" class="img-carta" id="c-11" />
+        </div>
+        <div class="carta">
+          <img src="" alt="" class="img-carta" id="c-12" />
+        </div>
+        <div class="carta">
+          <img src="" alt="" class="img-carta" id="c-13" />
+        </div>
+        <div class="carta">
+          <img src="" alt="" class="img-carta" id="c-14" />
+        </div>
+        <div class="carta">
+          <img src="" alt="" class="img-carta" id="c-15" />
+        </div>
+        <div class="carta">
+          <img src="" alt="" class="img-carta" id="c-16" />
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
