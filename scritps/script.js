@@ -1,10 +1,10 @@
 // $(".config").hide();
 $(document).ready(function () {
 
-    $(".opciones").css({ "display": "none" });
     const width = $(".config").width() - 48;
+    $(".opciones").css({ "display": "none" });
     $(".opciones").css({ "width": width });
-
+    $(".config").css({ "width": "48px" });
     $(".rueda").click(() => {
         $(".opciones").animate({ width: "toggle" }, 1000)
     });
