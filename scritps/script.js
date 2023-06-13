@@ -5,7 +5,7 @@ let famosos_facil = ["mila", "sarah"];
 let famosos_normal = ["amy", "isla", "mila", "sarah"];
 let plantas_facil = ["adelfa", "albahaca", "aloe", "diente", "helecho", "leon", "margarita"];
 let vehiculos_facil = ["avion", "barco", "coche", "moto", "tren"];
-let posiciones, turno, imagen_id_anterior, victoria;
+let posiciones, turno, imagen_id_anterior, victoria, click;
 
 let bloque_carta = function (num, ancho, alto) {
     return `
@@ -25,15 +25,12 @@ let bloque_carta = function (num, ancho, alto) {
 `
 }
 
-
 $(document).ready(function () {
 
-    // console.log(animales)
     $(".rueda").click(function () {
         if ($(".opciones").css("width") == "0px") {
             $(".config").toggleClass("ancho50");
-            $(".opciones").toggleClass("anchoOpciones");
-            $(".opciones").animate({ width: "toggle" }, 1000)
+            $(".opciones").toggleClass("anchoOpciones").animate({ width: "toggle" }, 1000);
         } else {
             $(".opciones").animate({ width: "toggle" }, 1000, function () {
                 $(".config").toggleClass("ancho50");
@@ -43,7 +40,6 @@ $(document).ready(function () {
     })
 
     $(".tablero,h1").click(() => {
-        // console.log("main", $(".opciones").width())
         if ($(".opciones").css("display") != "none") {
             $(".rueda").click();
         }
@@ -53,6 +49,7 @@ $(document).ready(function () {
         let tematica = $("input[name=tematica]:checked").val();
         if (tematica == "plantas" || tematica == "vehiculos") {
             alert("Solo está disponible esta dificultad con los animales y famosos.");
+            $("#facil").click();
         }
     });
 
@@ -65,8 +62,6 @@ $(document).ready(function () {
     });
 
     $("#iniciar").click(function () {
-        // console.log("seleccion: ", $("input[name=tematica]:checked").val())
-
         let tematica = $("input[name=tematica]:checked").val();
         let dificultad = $("input[name=dificultad]:checked").val()
 
@@ -87,69 +82,76 @@ $(document).ready(function () {
             }
             $(".tablero").css({ "grid-template-columns": "repeat(6,1fr)" });
         }
+
         $(".tablero").html(cartas);
+
+        //esta variable va a ir decreciendo cuando se acierten las parejas
         victoria = posiciones.length;
+
         colocarImagenes(dificultad, tematica);
+
         $(".rueda").click();
 
         ponerEventoClickEnCartas();
+
+        //esta variable controla que no se pueda pulsar una carta hasta que no se hayan dado la vuelta si se ha fallado
+        click = true;
+
         turno = 0;
         imagen_id_anterior = 0;
         $(".victoria").css("display", "none");
-    })
+    });
 });
 
 function colocarImagenes(dificultad, tematica) {
-    // console.log("dificultad: ", dificultad, " temática: ", tematica)
 
     let imagenes;
     eval(`imagenes = ${tematica}_${dificultad};`);
-    // console.log(imagenes)
 
     let imagen, pos1, pos2, index;
     do {
-        // console.log(posiciones, posiciones.length)
         imagen = imagenes[Math.floor(Math.random() * imagenes.length)];
 
         pos1 = posiciones[Math.floor(Math.random() * posiciones.length)];
-        // console.log("pos1: ", pos1);
+
         index = posiciones.indexOf(pos1);
         posiciones.splice(index, 1);
         pos2 = posiciones[Math.floor(Math.random() * posiciones.length)];
-        // console.log("pos2: ", pos2);
+
         index = posiciones.indexOf(pos2);
         posiciones.splice(index, 1);
 
         $(`#c-${pos1}`).attr("src", `assets/img/${tematica}/${imagen}.jpg`);
         $(`#c-${pos2}`).attr("src", `assets/img/${tematica}/${imagen}.jpg`);
-        // alert("a")
     } while (posiciones.length != 0)
 }
 
 function ponerEventoClickEnCartas() {
     $(".carta").click(function () {
-        $(this).children().first().css("transform", "rotateY(180deg)");
+        if (click == true) {
+            $(this).children().first().css("transform", "rotateY(180deg)");
 
-        turno += 1;
-        if ((turno % 2) == 1) {
-            console.log($(this).children().first().children().last().children().filter("img"))
-            imagen_id_anterior = $(this).children().first().children().last().children().filter("img").attr("id");
-            console.log(imagen_id_anterior)
-        } else {
-            let imagen_anterior = $(`#${imagen_id_anterior}`).attr("src");
-            let imagen_actual = $(this).children().first().children().last().children().filter("img").attr("src");
-            console.log(imagen_anterior, imagen_actual)
-            if (imagen_anterior != imagen_actual) {
-                setTimeout(() => {
-                    $(this).children().first().css("transform", "rotateY(0deg)");
-                    $(`#${imagen_id_anterior}`).parent().parent().css("transform", "rotateY(0deg)");
-                }, 500);
+            turno += 1;
+            if ((turno % 2) == 1) {
+                imagen_id_anterior = $(this).children().first().children().last().children().filter("img").attr("id");
             } else {
-                victoria -= 2;
-            }
-            if (victoria == 0) {
-                $(".victoria").css("display", "block");
-                $(".h1victoria").html(`Has ganado en ${turno / 2} turnos`);
+                click = false;
+                let imagen_anterior = $(`#${imagen_id_anterior}`).attr("src");
+                let imagen_actual = $(this).children().first().children().last().children().filter("img").attr("src");
+
+                if (imagen_anterior != imagen_actual) {
+                    setTimeout(() => {
+                        $(this).children().first().css("transform", "rotateY(0deg)");
+                        $(`#${imagen_id_anterior}`).parent().parent().css("transform", "rotateY(0deg)");
+                    }, 750);
+                } else {
+                    victoria -= 2;
+                }
+                setTimeout(() => { click = true; }, 750);
+                if (victoria == 0) {
+                    $(".victoria").css("display", "block");
+                    $(".h1victoria").html(`Has ganado en ${turno / 2} turnos`);
+                }
             }
         }
     })

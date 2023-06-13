@@ -3,33 +3,28 @@
 }
 
 body {
-  /* height: 100vh; */
   width: 100vw;
   overflow: hidden;
-  background-color: antiquewhite;
+  /* background-color: antiquewhite; */
 }
 
 main {
   height: 100%;
   width: 100%;
   position: relative;
-  background-color: brown;
+  /* background-color: brown; */
 }
 
 h1 {
   margin-top: 48px;
   text-align: center;
-  background-color: burlywood;
+  /* background-color: burlywood; */
 }
 
 .config {
-  /* display: none; */
   height: 70%;
   width: 48px;
-  /* width: 50%; */
   position: absolute;
-  /* left: calc(-50% + 48px); */
-  /* background-color: cadetblue; */
   top: 10%;
   z-index: 2;
 }
@@ -43,7 +38,7 @@ h1 {
   display: none;
   width: 0;
   overflow: hidden;
-  background-color: coral;
+  background-color: black;
   float: left;
 }
 
@@ -55,6 +50,11 @@ h1 {
   text-align: center;
   padding-top: 16px;
   font-size: 2em;
+  color: white;
+}
+
+.opciones label {
+  color: white;
 }
 
 .tematica {
@@ -91,7 +91,7 @@ h1 {
 .rueda {
   height: 48px;
   width: 48px;
-  background-color: cornsilk;
+  background-color: white;
   float: left;
 }
 
@@ -104,7 +104,7 @@ h1 {
   z-index: 1;
   width: 100%;
   height: calc(100vh - 100px);
-  background-color: goldenrod;
+  background-color: darkgray;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
@@ -137,10 +137,6 @@ h1 {
   backface-visibility: hidden;
 }
 
-/* .carta:hover .flip-card-inner {
-  transform: rotateY(180deg);
-} */
-
 .flip-card-front {
   background-color: #e5e5f7;
   opacity: 0.8;
@@ -155,14 +151,6 @@ h1 {
 
 .flip-card-back {
   transform: rotateY(180deg);
-}
-
-.carta:nth-child(even) {
-  background-color: gray;
-}
-
-.carta:nth-child(odd) {
-  background-color: burlywood;
 }
 
 .img-carta {
